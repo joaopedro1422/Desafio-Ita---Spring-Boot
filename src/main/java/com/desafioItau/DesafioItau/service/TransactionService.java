@@ -26,6 +26,6 @@ public class TransactionService {
                 transaction -> transaction.getDataHora().isAfter(OffsetDateTime.now().minusSeconds(60)))
                 .mapToDouble(Transaction::getValor)
                 .summaryStatistics();
-        return new StatisticsResponse(stats.getCount(),stats.getSum(),stats.getAverage(),stats.getMax(),stats.getMin())
+        return new StatisticsResponse(stats.getCount(),stats.getSum(),stats.getAverage(),stats.getMax(),stats.getMin());
     }
 }

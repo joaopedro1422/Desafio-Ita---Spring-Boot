@@ -5,5 +5,5 @@ import jakarta.validation.constraints.NotNull;
 
 import java.time.OffsetDateTime;
 
-public record TransactionRequestDto(@NotNull @Min(0) double valor, @NotNull OffsetDateTime dataHora) {
+public record TransactionRequestDto(@NotNull double valor, @NotNull OffsetDateTime dataHora) {
 }
