@@ -20,13 +20,12 @@ public class TransactionController {
     }
     @PostMapping
     public ResponseEntity<Void> createNewTransaction(@RequestBody @Valid TransactionRequestDto transactionData){
-        if(transactionData.dataHora().isAfter(OffsetDateTime.now()) || transactionData.valor() < 0){
+        if(transactionData.dataHora().isAfter(OffsetDateTime.now()) || transactionData.valor() < 0 ){
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).build();
         }
         transactionService.addNewTransaction(new Transaction(transactionData.valor(), transactionData.dataHora()));
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-
     @DeleteMapping
     public ResponseEntity<Void> deleteAllTransactions(){
         transactionService.deleteAllTransactions();

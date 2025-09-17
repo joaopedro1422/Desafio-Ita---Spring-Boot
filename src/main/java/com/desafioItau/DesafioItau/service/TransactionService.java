@@ -21,9 +21,9 @@ public class TransactionService {
     public void deleteAllTransactions(){
         this.transactions.clear();
     }
-    public StatisticsResponse getStats(){
+    public StatisticsResponse getStats(long interval){
         DoubleSummaryStatistics stats = this.transactions.stream().filter(
-                transaction -> transaction.getDataHora().isAfter(OffsetDateTime.now().minusSeconds(60)))
+                transaction -> transaction.getDataHora().isAfter(OffsetDateTime.now().minusSeconds(interval)))
                 .mapToDouble(Transaction::getValor)
                 .summaryStatistics();
         return new StatisticsResponse(stats.getCount(),stats.getSum(),stats.getAverage(),stats.getMax(),stats.getMin());
